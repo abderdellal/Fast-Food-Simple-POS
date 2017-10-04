@@ -1,0 +1,102 @@
+﻿<Window x:Class="Ui.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ui"
+        xmlns:Views="clr-namespace:Ui.View"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        xmlns:ViewModels="clr-namespace:Logic.ViewModel;assembly=Logic"
+        mc:Ignorable="d"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Height="600" Width="1050" MinWidth="850" MinHeight="640"
+        Title="Fast Food Cash Register">
+
+    <Window.DataContext>
+        <Binding Path="Main" Source="{StaticResource Locator}" />
+    </Window.DataContext>
+
+
+    <DockPanel>
+        
+        <!-- Main Menu-->
+        <Menu DockPanel.Dock="Left" BorderThickness="2" Margin="0,0,20,0" Background="BlueViolet">
+            <Menu.Resources>
+                <Style TargetType="MenuItem">
+                    <Setter Property="Height" Value="100"/>
+                    <Setter Property="FontSize" Value="25"/>
+                    <Setter Property="BorderBrush" Value="Green"/>
+                </Style>
+            </Menu.Resources>
+
+            <Menu.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Orientation="Vertical"/>
+                </ItemsPanelTemplate>
+            </Menu.ItemsPanel>
+
+            <MenuItem Header="{StaticResource Home}" Command="{Binding changeViewCommand}" CommandParameter="{Binding Home, Source={StaticResource Locator}}" Background="Red">
+                <MenuItem.Icon>
+                    <materialDesign:PackIcon Kind="HomeModern"/>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="{StaticResource Items}" Command="{Binding changeViewCommand}" CommandParameter="{Binding Items, Source={StaticResource Locator}}">
+                <MenuItem.Icon>
+                    <materialDesign:PackIcon Kind="Food"/>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="{StaticResource Add_Item}" Command="{Binding changeViewCommand}" CommandParameter="{Binding AddItem, Source={StaticResource Locator}}">
+                <MenuItem.Icon>
+                    <materialDesign:PackIcon Kind="PlusBox"/>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="{StaticResource Sales}" Command="{Binding changeViewCommand}" CommandParameter="{Binding SalesHistory, Source={StaticResource Locator}}">
+                <MenuItem.Icon>
+                    <materialDesign:PackIcon Kind="FormatListBulleted"/>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="{StaticResource Users}" Command="{Binding changeViewCommand}" CommandParameter="{Binding Users, Source={StaticResource Locator}}">
+                <MenuItem.Icon>
+                    <materialDesign:PackIcon Kind="Account"/>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="{StaticResource Exit}" Click="MenuItem_Click" >
+                <MenuItem.Icon>
+                    <materialDesign:PackIcon Kind="Logout"/>
+                </MenuItem.Icon>
+            </MenuItem>
+
+        </Menu>
+
+
+        <!-- this Content control will change the displayed view according to the SelectedViewModel property in the MainViewModel -->
+
+        <ContentControl  Content="{Binding SelectedViewModel}" >
+            <ContentControl.Resources>
+                <!-- DataTemplates to bind ViewModels to Views-->
+                <DataTemplate DataType="{x:Type ViewModels:HomeViewModel}">
+                    <Views:HomeView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type ViewModels:ItemsViewModel}">
+                    <Views:ItemsView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type ViewModels:AddItemViewModel}">
+                    <Views:AddItemView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type ViewModels:SalesHistoryViewModel}">
+                    <Views:SalesHistoryView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type ViewModels:UsersViewModel}">
+                    <Views:UsersView/>
+                </DataTemplate>
+            </ContentControl.Resources>
+        </ContentControl>
+
+    </DockPanel>
+</Window>

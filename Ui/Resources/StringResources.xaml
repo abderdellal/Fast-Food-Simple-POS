@@ -1,0 +1,39 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Ui.Resources"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <!-- Main Menu -->
+    <system:String x:Key="Home">Accueil</system:String>
+    <system:String x:Key="Items">Articles</system:String>
+    <system:String x:Key="Add_Item">Ajout Article</system:String>
+    <system:String x:Key="Sales">Ventes</system:String>
+    <system:String x:Key="Users">Utilisateurs</system:String>
+    <system:String x:Key="Exit">Quitter</system:String>
+
+    <!-- Add Item Form and Items Display -->
+    <system:String x:Key="Item_name">Nom de l'article</system:String>
+    <system:String x:Key="price">Prix</system:String>
+    
+    <!-- Home -->
+    <system:String x:Key="Amount">Quantité</system:String>
+    <system:String x:Key="Total">Total(DA)</system:String>
+    <system:String x:Key="Save">Enregister</system:String>
+    
+    <!-- Sales History-->
+    <system:String x:Key="Refresh">Rafraichir</system:String>
+    <system:String x:Key="Print">Imprimer</system:String>
+    <system:String x:Key="InvoiceID">ID Facture</system:String>
+    <system:String x:Key="Item">Article</system:String>
+    <system:String x:Key="Date">Date</system:String>
+    <system:String x:Key="UnitPrice">Prix Unitaire</system:String>
+
+    <!-- Users -->
+    <system:String x:Key="User_type">Type de l'utilisateur</system:String>
+    <system:String x:Key="New_User_Name">Nouveau Nom d'utilisateur</system:String>
+    <system:String x:Key="User_Name">Nom d'utilisateur</system:String>
+    <system:String x:Key="Password">Mot De Pass</system:String>
+    <system:String x:Key="Confirm_PassWord">Confirmez le mot de pass</system:String>
+
+
+</ResourceDictionary>
