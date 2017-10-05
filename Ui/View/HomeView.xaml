@@ -82,10 +82,10 @@
                     <TextBlock Text="{StaticResource Total}" Grid.Column="2"/>
                 </Grid>
 
-                <ListView ItemsSource="{Binding Sales}" DockPanel.Dock="Bottom" SelectionMode="Single" x:Name="myListView" SelectionChanged="ListView_SelectionChanged">
+                <ListView ItemsSource="{Binding Sales}" DockPanel.Dock="Bottom" SelectionMode="Single" x:Name="myListView" SelectionChanged="ListView_SelectionChanged" >
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Grid >
+                            <Grid Height="50">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="300"/>
                                     <ColumnDefinition Width="120"/>

@@ -93,6 +93,7 @@
     <Compile Include="ViewModel\AddItemViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\ItemsViewModel.cs" />
+    <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\Messages\ItemAddedMessage.cs" />
     <Compile Include="ViewModel\Messages\ItemDeletedMessage.cs" />

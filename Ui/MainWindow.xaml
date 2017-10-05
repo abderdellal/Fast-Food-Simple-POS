@@ -26,7 +26,7 @@
     <DockPanel>
         
         <!-- Main Menu-->
-        <Menu DockPanel.Dock="Left" BorderThickness="2" Margin="0,0,20,0" Background="BlueViolet">
+        <Menu DockPanel.Dock="Left" BorderThickness="2" Margin="0,0,20,0" Background="BlueViolet" Visibility="{Binding DisplayMenu}">
             <Menu.Resources>
                 <Style TargetType="MenuItem">
                     <Setter Property="Height" Value="100"/>

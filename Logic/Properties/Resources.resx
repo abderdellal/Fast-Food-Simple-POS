@@ -129,4 +129,10 @@
   <data name="Price_Wrong_Format" xml:space="preserve">
     <value>Le prix n'est pas valide !</value>
   </data>
+  <data name="Wrong_Password" xml:space="preserve">
+    <value>Mot de pass uncorrect !</value>
+  </data>
+  <data name="Wrong_UserName" xml:space="preserve">
+    <value>Nom d'utilisateur uncorrect !</value>
+  </data>
 </root>

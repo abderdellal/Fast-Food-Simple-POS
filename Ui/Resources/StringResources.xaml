@@ -35,5 +35,7 @@
     <system:String x:Key="Password">Mot De Pass</system:String>
     <system:String x:Key="Confirm_PassWord">Confirmez le mot de pass</system:String>
 
-
+    <!-- Login -->
+    <system:String x:Key="Log_In">Se Connecter</system:String>
+    
 </ResourceDictionary>

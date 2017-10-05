@@ -95,5 +95,23 @@ namespace Logic.Properties {
                 return ResourceManager.GetString("Price_Wrong_Format", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mot de pass uncorrect !.
+        /// </summary>
+        internal static string Wrong_Password {
+            get {
+                return ResourceManager.GetString("Wrong_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nom d&apos;utilisateur uncorrect !.
+        /// </summary>
+        internal static string Wrong_UserName {
+            get {
+                return ResourceManager.GetString("Wrong_UserName", resourceCulture);
+            }
+        }
     }
 }

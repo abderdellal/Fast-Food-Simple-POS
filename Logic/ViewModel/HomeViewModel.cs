@@ -48,6 +48,7 @@ namespace Logic.ViewModel
                 Sales.Add(s);
                 SelectedSale = s;
                 RaisePropertyChanged("Total");
+                ComandesRaiseCanExecuteChange();
             });
 
             DeleteSale = new RelayCommand(() =>
@@ -55,19 +56,27 @@ namespace Logic.ViewModel
                 if (SelectedSale != null)
                 {
                     Sales.Remove(SelectedSale);
-                    if (Sales.Count == 0)
+                    if (Sales.Count != 0)
+                    {
+                        SelectedSale = Sales.Last();
+                    }
+                    else
                     {
                         SelectedSale = null;
                     }
+                    ComandesRaiseCanExecuteChange();
                 }
-            });
+            },
+            () => SelectedSale != null);
 
             ResetSales = new RelayCommand(() =>
             {
                 Sales.Clear();
                 RaisePropertyChanged("Total");
                 SelectedSale = null;
-            });
+                ComandesRaiseCanExecuteChange();
+            },
+            () => Sales.Count > 0);
 
             IncreaseSaleAmount = new RelayCommand(() =>
             {
@@ -75,8 +84,10 @@ namespace Logic.ViewModel
                 {
                     SelectedSale.Amount++;
                     RaisePropertyChanged("Total");
+                    ComandesRaiseCanExecuteChange();
                 }
-            });
+            },
+            () => SelectedSale != null);
 
             DecreaseSaleAmount = new RelayCommand(() =>
             {
@@ -88,8 +99,10 @@ namespace Logic.ViewModel
                         RaisePropertyChanged("Total");
 
                     }
+                    ComandesRaiseCanExecuteChange();
                 }
-            });
+            },
+            () => SelectedSale != null && SelectedSale.Amount > 1);
 
             SaveInvoice = new RelayCommand(() =>
             {
@@ -113,7 +126,9 @@ namespace Logic.ViewModel
                     SelectedSale = null;
                 }
                 RaisePropertyChanged("Total");
-            });
+                ComandesRaiseCanExecuteChange();
+            },
+            () =>Sales.Count > 0);
 
             MessengerInstance.Register<ItemAddedMessage>(this, m =>
             {
@@ -136,6 +151,21 @@ namespace Logic.ViewModel
                     Items.Add(item);
                 }
             }
+        }
+
+        public void SelectSale(Sale sale)
+        {
+            SelectedSale = sale;
+            ComandesRaiseCanExecuteChange();
+        }
+
+        private void ComandesRaiseCanExecuteChange()
+        {
+            DeleteSale.RaiseCanExecuteChanged();
+            IncreaseSaleAmount.RaiseCanExecuteChanged();
+            DecreaseSaleAmount.RaiseCanExecuteChanged();
+            ResetSales.RaiseCanExecuteChanged();
+            SaveInvoice.RaiseCanExecuteChanged();
         }
     }
 }
