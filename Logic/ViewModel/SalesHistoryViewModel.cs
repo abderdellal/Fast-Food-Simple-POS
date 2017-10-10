@@ -5,15 +5,34 @@ using GalaSoft.MvvmLight;
 using System.Collections.ObjectModel;
 using Logic.Model;
 using GalaSoft.MvvmLight.Command;
+using System.Collections.Generic;
 
 namespace Logic.ViewModel
 {
     public class SalesHistoryViewModel : ViewModelBase
     {
-        public ObservableCollection<Sale> Sales { get; set; }
+        public ObservableCollection<Sale> Sales { get; set; } = new ObservableCollection<Sale>();
 
         public DateTime maxDate { get; set; }
         public DateTime minDate { get; set; }
+        public ItemType? typeSelected { get; set; }
+
+        public int TotalSum
+        {
+            get
+            {
+                return Sales.Sum(s => s.totalPrice);
+            }
+        }
+
+        public IEnumerable<ItemType> MyEnumTypeValues
+        {
+            get
+            {
+                return  Enum.GetValues(typeof(ItemType))
+                    .Cast<ItemType>();
+            }
+        }
 
         public RelayCommand refreshCommand { get; set; }
 
@@ -39,10 +58,22 @@ namespace Logic.ViewModel
 
             using (var ctx = new FastFoodContext())
             {
-                foreach (Sale sale in ctx.Sales.Include(s => s.Invoice).Where(s => (s.Invoice.InvoiceDate >= minDate && s.Invoice.InvoiceDate <= maxDate)))
+                List<Sale> sales;
+                if (typeSelected != null)
+                {
+                    sales = ctx.Sales.Include(s => s.Invoice).Where(s => (s.Invoice.InvoiceDate >= minDate && s.Invoice.InvoiceDate <= maxDate && s.ItemType == typeSelected)).ToList();
+                }
+                else
+                {
+                    sales = ctx.Sales.Include(s => s.Invoice).Where(s => (s.Invoice.InvoiceDate >= minDate && s.Invoice.InvoiceDate <= maxDate)).ToList();
+                }
+
+                foreach (Sale sale in sales)
                 {
                     Sales.Add(sale);
                 }
+                RaisePropertyChanged("TotalSum");
+                typeSelected = null;
             }
         }
     }

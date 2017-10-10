@@ -40,13 +40,28 @@ namespace Logic.ViewModel
 
             addSale = new RelayCommand<Item>(item =>
             {
-                Sale s = new Sale();
-                s.ItemName = item.ItemName;
-                s.UnitPrice = item.ItemPrice;
-                s.Amount = 1;
+                bool exists = false;
+                foreach(Sale sale in Sales)
+                {
+                    if(sale.ItemName == item.ItemName)
+                    {
+                        sale.Amount++;
+                        SelectedSale = sale;
+                        exists = true;
+                        break;
+                    }
+                }
+                if (!exists)
+                {
+                    Sale s = new Sale();
+                    s.ItemName = item.ItemName;
+                    s.UnitPrice = item.ItemPrice;
+                    s.Amount = 1;
+                    s.ItemType = item.ItemType;
 
-                Sales.Add(s);
-                SelectedSale = s;
+                    Sales.Add(s);
+                    SelectedSale = s;
+                }
                 RaisePropertyChanged("Total");
                 ComandesRaiseCanExecuteChange();
             });

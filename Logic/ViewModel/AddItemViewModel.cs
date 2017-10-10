@@ -3,6 +3,9 @@ using GalaSoft.MvvmLight.Command;
 using Logic.Model;
 using Logic.Properties;
 using Logic.ViewModel.Messages;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Logic.ViewModel
 {
@@ -11,6 +14,14 @@ namespace Logic.ViewModel
         public Item item { get; set; }
         public string formulaireValide { get; set; }
         public RelayCommand SaveCommande { get; set; }
+        public IEnumerable<ItemType> MyEnumTypeValues
+        {
+            get
+            {
+                return Enum.GetValues(typeof(ItemType))
+                    .Cast<ItemType>();
+            }
+        }
 
         public AddItemViewModel()
         {

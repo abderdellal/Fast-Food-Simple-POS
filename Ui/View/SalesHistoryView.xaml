@@ -6,16 +6,23 @@
              xmlns:local="clr-namespace:Ui.View"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="800">
-    <DockPanel Margin="10, 40, 10, 10">
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" DockPanel.Dock="Top" Margin="0, 0, 0, 20">
-            <TextBlock Text="Date de Debut :"  Margin="0, 5, 30, 0"/>
+    <Grid Margin="10, 40, 10, 10" VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 0, 0, 20" Grid.Row="0">
+            <TextBlock Text="{StaticResource minDate}"  Margin="0, 5, 30, 0"/>
             <DatePicker x:Name="minDatePicker" SelectedDateChanged="minDatePicker_SelectedDateChanged"/>
-            <TextBlock Text="Date de Fin :" Margin="30, 5, 30, 0"/>
+            <TextBlock Text="{StaticResource maxDate}" Margin="30, 5, 30, 0"/>
             <DatePicker x:Name="maxDatePicker" SelectedDateChanged="maxDatePicker_SelectedDateChanged"/>
-            <Button Content="{StaticResource Refresh}" Command="{Binding refreshCommand}" Margin="30, 0, 0, 0"/>
-            <Button Content="{StaticResource Print}" Margin="30, 0, 0, 0"/>
+            <TextBlock Text="{StaticResource ItemType}"  Margin="30, 5, 30, 0"/>
+            <ComboBox SelectedItem="{Binding typeSelected}" ItemsSource="{Binding MyEnumTypeValues}" Grid.Column="1" Grid.Row="2" Width="150"/>
+
         </StackPanel>
-        <DataGrid ItemsSource="{Binding Sales}" AutoGenerateColumns="False" HorizontalAlignment="Center" CanUserSortColumns="True">
+        <DataGrid ItemsSource="{Binding Sales}" AutoGenerateColumns="False" Grid.Row="1" HorizontalAlignment="Center" CanUserSortColumns="True" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="{StaticResource InvoiceID}" IsReadOnly="True" Binding="{Binding Path=Invoice.InvoiceID}"/>
                 <DataGridTextColumn Header="{StaticResource Item}"  IsReadOnly="True" Binding="{Binding ItemName}"/>
@@ -25,5 +32,14 @@
                 <DataGridTextColumn Header="{StaticResource Date}" IsReadOnly="True" Binding="{Binding Path=Invoice.InvoiceDate}"/>
             </DataGrid.Columns>
         </DataGrid>
-    </DockPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2" Margin="0,15,0,15">
+            <TextBlock Text="{StaticResource TotalSum}" FontSize="15" FontWeight="Bold"/>
+            <TextBlock Text="{Binding TotalSum}" Margin="10,0,0,0" FontSize="15" FontWeight="Bold"/>
+            <TextBlock Text="DA" Margin="5,0,0,0" FontSize="15" FontWeight="Bold"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="3">
+            <Button Content="{StaticResource Refresh}" Command="{Binding refreshCommand}" Margin="30, 0, 0, 0"/>
+            <Button Content="{StaticResource Print}" Margin="30, 0, 0, 0" Click="Print_Button_Click"/>
+        </StackPanel>
+    </Grid>
 </UserControl>

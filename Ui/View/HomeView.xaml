@@ -20,7 +20,7 @@
         </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="250"/>
         </Grid.ColumnDefinitions>
 
         <DockPanel Grid.Column="2">
@@ -28,7 +28,7 @@
             <ListView ItemsSource="{Binding Items}" DockPanel.Dock="Bottom" HorizontalAlignment="Center" x:Name="ListViewArticle">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Button Content="{Binding ItemName}" Height="60" Width="125" Command="{Binding ElementName=ListViewArticle, Path=DataContext.addSale}" CommandParameter="{Binding}"/>
+                        <Button Content="{Binding ItemName}" Height="80" Width="225" Command="{Binding ElementName=ListViewArticle, Path=DataContext.addSale}" CommandParameter="{Binding}"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
@@ -73,21 +73,21 @@
             <DockPanel Grid.Row="1">
                 <Grid DockPanel.Dock="Top" VerticalAlignment="Center" Height="80">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="300"/>
+                        <ColumnDefinition Width="350"/>
                         <ColumnDefinition Width="120"/>
                         <ColumnDefinition Width="120"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="{StaticResource Items}" Grid.Column="0"/>
-                    <TextBlock Text="{StaticResource Amount}" Grid.Column="1"/>
-                    <TextBlock Text="{StaticResource Total}" Grid.Column="2"/>
+                    <TextBlock Text="{StaticResource Items}" Grid.Column="0" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{StaticResource Amount}" Grid.Column="1" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{StaticResource Total}" Grid.Column="2" HorizontalAlignment="Center"/>
                 </Grid>
 
-                <ListView ItemsSource="{Binding Sales}" DockPanel.Dock="Bottom" SelectionMode="Single" x:Name="myListView" SelectionChanged="ListView_SelectionChanged" >
+                <ListView ItemsSource="{Binding Sales}" DockPanel.Dock="Bottom" SelectionMode="Single" x:Name="myListView" SelectionChanged="ListView_SelectionChanged">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid Height="50">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="300"/>
+                                    <ColumnDefinition Width="350"/>
                                     <ColumnDefinition Width="120"/>
                                     <ColumnDefinition Width="120"/>
                                 </Grid.ColumnDefinitions>
@@ -103,7 +103,7 @@
 
             <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBlock Text="{Binding Total, StringFormat='Total = {0} DA'}" Margin="0,0,50,0" FontSize="22"/>
-                <Button  Height="60" MaxWidth="300" Content="{StaticResource Save}" FontSize="25" Command="{Binding SaveInvoice}"/>
+                <Button  Height="60" MaxWidth="300" Content="{StaticResource Save}" FontSize="25" Command="{Binding SaveInvoice}" Click="Print_Invoice"/>
             </StackPanel>
         </Grid>
 

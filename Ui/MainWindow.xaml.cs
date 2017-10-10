@@ -9,7 +9,7 @@ namespace Ui
     {
         public MainWindow()
         {
-            WindowState = WindowState.Maximized;
+            //WindowState = WindowState.Maximized;
             InitializeComponent();
         }
 

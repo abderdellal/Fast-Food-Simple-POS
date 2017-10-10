@@ -15,7 +15,7 @@
         mc:Ignorable="d"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Height="600" Width="1050" MinWidth="850" MinHeight="640"
+        Height="600" Width="1050" MinWidth="950" MinHeight="680"
         Title="Fast Food Cash Register">
 
     <Window.DataContext>

@@ -25,6 +25,7 @@ namespace Logic.Model
         public string ItemName { get; set; }
         public int UnitPrice { get; set; }
         public int Amount { get; set; }
+        public ItemType ItemType { get; set; }
 
         [NotMapped]
         public int totalPrice
@@ -37,4 +38,6 @@ namespace Logic.Model
 
         public Invoice Invoice { get; set; }
     }
+
+    public enum ItemType { Sandwich, Boisson}
 }

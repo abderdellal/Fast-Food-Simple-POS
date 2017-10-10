@@ -22,5 +22,8 @@ namespace Logic.Model
         [Required]
         [Range(0, int.MaxValue)]
         public int ItemPrice { get; set; }
+
+        [Required]
+        public ItemType ItemType { get; set; }
     }
 }

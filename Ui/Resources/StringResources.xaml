@@ -14,7 +14,8 @@
     <!-- Add Item Form and Items Display -->
     <system:String x:Key="Item_name">Nom de l'article</system:String>
     <system:String x:Key="price">Prix</system:String>
-    
+    <system:String x:Key="ItemType">Catégorie de l'article</system:String>
+
     <!-- Home -->
     <system:String x:Key="Amount">Quantité</system:String>
     <system:String x:Key="Total">Total(DA)</system:String>
@@ -27,6 +28,10 @@
     <system:String x:Key="Item">Article</system:String>
     <system:String x:Key="Date">Date</system:String>
     <system:String x:Key="UnitPrice">Prix Unitaire</system:String>
+    <system:String x:Key="minDate">Date de début</system:String>
+    <system:String x:Key="maxDate">Date de Fin</system:String>
+    <system:String x:Key="TotalSum">Total : </system:String>
+
 
     <!-- Users -->
     <system:String x:Key="User_type">Type de l'utilisateur</system:String>
@@ -34,6 +39,7 @@
     <system:String x:Key="User_Name">Nom d'utilisateur</system:String>
     <system:String x:Key="Password">Mot De Pass</system:String>
     <system:String x:Key="Confirm_PassWord">Confirmez le mot de pass</system:String>
+    <system:String x:Key="New_Password">Nouveau mot de pass</system:String>
 
     <!-- Login -->
     <system:String x:Key="Log_In">Se Connecter</system:String>
