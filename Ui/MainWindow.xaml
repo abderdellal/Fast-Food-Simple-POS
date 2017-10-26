@@ -15,8 +15,8 @@
         mc:Ignorable="d"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Height="600" Width="1050" MinWidth="950" MinHeight="680"
-        Title="Fast Food Cash Register">
+        Height="655" Width="1200" MinWidth="1200" MinHeight="655" Icon="manifest.ico"
+        Title="EL BEYLIK SHAWARMA">
 
     <Window.DataContext>
         <Binding Path="Main" Source="{StaticResource Locator}" />
@@ -24,7 +24,15 @@
 
 
     <DockPanel>
-        
+        <StackPanel DockPanel.Dock="Left" Visibility="{Binding DisplayIconBar}" Margin="2,0,15,0">
+            <Image Source=".\Resources\FastFoodIconMenu.png" Width="180"/>
+            <Image Source=".\Resources\FastFoodIconMenu.png" Width="180"/>
+            <Image Source=".\Resources\FastFoodIconMenu.png" Width="180"/>
+            <Image Source=".\Resources\FastFoodIconMenu.png" Width="180"/>
+            <Image Source=".\Resources\FastFoodIconMenu.png" Width="180"/>
+            <Image Source=".\Resources\FastFoodIconMenu.png" Width="180"/>
+            <Image Source=".\Resources\FastFoodIconMenu.png" Width="180"/>
+        </StackPanel>
         <!-- Main Menu-->
         <Menu DockPanel.Dock="Left" BorderThickness="2" Margin="0,0,20,0" Background="BlueViolet" Visibility="{Binding DisplayMenu}">
             <Menu.Resources>

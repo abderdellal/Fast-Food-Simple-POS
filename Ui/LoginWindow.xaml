@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Ui"
         mc:Ignorable="d"
-        Title="{StaticResource Log_In}" Height="300" Width="600">
+        Title="{StaticResource Log_In}" Height="300" Width="600" Icon="manifest.ico">
     <Grid>
         <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Grid>

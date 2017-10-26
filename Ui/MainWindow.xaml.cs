@@ -13,6 +13,7 @@ namespace Ui
             InitializeComponent();
         }
 
+        //click on Exit Menu Item
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             Close();

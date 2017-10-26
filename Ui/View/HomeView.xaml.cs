@@ -1,11 +1,8 @@
 ﻿using Logic.Model;
 using Logic.ViewModel;
-using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Drawing;
 using System.Drawing.Printing;
 
@@ -43,22 +40,24 @@ namespace Ui.View
 
         private void Print_Invoice(object sender, System.Windows.RoutedEventArgs e)
         {
-            string nomRestaurant = "NOM DU RESTAURANT"; //majuscule !
-            string adresseRestaurant = "Adresse du Restaurant";
-            string Telephone = "0123456789";
+            string nomRestaurant = "EL BEYLIK SHAWARMA"; //majuscule !
+            string adresseRestaurant = "En face de l'arret Sougueur";
+            string Telephone = "0770746106";
+            string telephone2 = "0798252738";
 
             HomeViewModel vm = (HomeViewModel)DataContext;
 
             PrintDialog dialog = new PrintDialog();
-
+            
             StackPanel myPanel = new StackPanel();
-            myPanel.Margin = new Thickness(15, 0, 15, 15);
-
-            System.Windows.Controls.Image Icon = new System.Windows.Controls.Image();
-            Icon.Width = 228;
-            Icon.Stretch = Stretch.Uniform;
-            Icon.Source = new BitmapImage(new Uri("C:\\Logo.png", UriKind.Absolute));
-            myPanel.Children.Add(Icon);
+            myPanel.Margin = new Thickness(15, 0, 0, 15);
+            myPanel.Width = 240;
+            //System.Windows.Controls.Image Icon = new System.Windows.Controls.Image();
+            //Icon.Width = 57;
+            //Icon.Stretch = Stretch.Uniform;
+            ////Icon.Source = new BitmapImage(new Uri("C:\\Logo.png", UriKind.Absolute));
+            //Icon.Source = new BitmapImage(new Uri(".\\FastFoodIconReceipt.png", UriKind.Relative));
+            //myPanel.Children.Add(Icon);
 
             TextBlock FastFoodName = new TextBlock();
             FastFoodName.Text = nomRestaurant;
@@ -70,16 +69,22 @@ namespace Ui.View
             Adress.HorizontalAlignment = HorizontalAlignment.Center;
             myPanel.Children.Add(Adress);
 
-            TextBlock ZipCode = new TextBlock();
-            ZipCode.Text = "14000 Tiaret";
-            ZipCode.HorizontalAlignment = HorizontalAlignment.Center;
-            myPanel.Children.Add(ZipCode);
+            //TextBlock ZipCode = new TextBlock();
+            //ZipCode.Text = "14000 Tiaret";
+            //ZipCode.HorizontalAlignment = HorizontalAlignment.Center;
+            //myPanel.Children.Add(ZipCode);
 
             TextBlock PhoneNumber = new TextBlock();
             PhoneNumber.Text = "Tel : " + Telephone;
             PhoneNumber.HorizontalAlignment = HorizontalAlignment.Center;
-            PhoneNumber.Margin = new Thickness(0, 2, 0, 10);
+            //PhoneNumber.Margin = new Thickness(0, 2, 0, 10);
             myPanel.Children.Add(PhoneNumber);
+
+            TextBlock PhoneNumber2 = new TextBlock();
+            PhoneNumber2.Text = "Tel : " + telephone2;
+            PhoneNumber2.HorizontalAlignment = HorizontalAlignment.Center;
+            PhoneNumber2.Margin = new Thickness(0, 2, 0, 10);
+            myPanel.Children.Add(PhoneNumber2);
 
             {
                 Grid grid = new Grid();
@@ -89,7 +94,7 @@ namespace Ui.View
                 grid.ColumnDefinitions.Add(cd2);
                 ColumnDefinition cd3 = new ColumnDefinition() { Width = new GridLength(20, GridUnitType.Star) };
                 grid.ColumnDefinitions.Add(cd3);
-                grid.Margin = new Thickness(10, 1, 5, 5);
+                grid.Margin = new Thickness(10, 1, 0, 5);
 
                 TextBlock amount = new TextBlock();
                 amount.Text = "Qte";
@@ -123,7 +128,7 @@ namespace Ui.View
                 grid.ColumnDefinitions.Add(cd2);
                 ColumnDefinition cd3 = new ColumnDefinition() { Width = new GridLength(20, GridUnitType.Star) };
                 grid.ColumnDefinitions.Add(cd3);
-                grid.Margin = new Thickness(10, 1, 5, 0);
+                grid.Margin = new Thickness(10, 1, 0, 0);
 
                 TextBlock amount = new TextBlock();
                 amount.Text = sale.Amount + "";

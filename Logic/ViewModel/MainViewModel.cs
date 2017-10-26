@@ -12,6 +12,13 @@ namespace Logic.ViewModel
                 return (LoginViewModel.LoggedUser != null && LoginViewModel.LoggedUser.UserType == Model.typeUser.Admin)? "Visible" : "Collapsed";
             }
         }
+        public string DisplayIconBar
+        {
+            get
+            {
+                return (LoginViewModel.LoggedUser != null && LoginViewModel.LoggedUser.UserType == Model.typeUser.Admin) ? "Collapsed" : "Visible";
+            }
+        }
         /// <summary>
         /// View/ViewModel to be displayed in the main frame (the View will be selected according to the selected ViewModel)
         /// </summary>

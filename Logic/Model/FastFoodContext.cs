@@ -5,7 +5,7 @@ namespace Logic.Model
     public class FastFoodContext : DbContext
     {
         public FastFoodContext()
-            : base()
+            : base("DefaultConnection")
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<FastFoodContext, Migrations.Configuration>());
         }

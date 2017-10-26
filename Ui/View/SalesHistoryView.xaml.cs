@@ -74,9 +74,15 @@ namespace Ui.View
 
         private void Print_Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            string nomRestaurant = "NOM DU RESTAURANT"; //majuscule !
-            string adresseRestaurant = "Adresse du Restaurant";
-            string Telephone = "0123456789";
+            var pd = new PrintDialog();
+            if(pd.ShowDialog() != true)
+            {
+                return;
+            }
+
+            string nomRestaurant = "EL BEYLIK SHAWARMA"; //majuscule !
+            //string adresseRestaurant = "Adresse du Restaurant";
+            //string Telephone = "0123456789";
             const int ITEMS_PER_PAGE = 32;
 
             //get the view model
@@ -98,21 +104,21 @@ namespace Ui.View
                 FastFoodName.HorizontalAlignment = HorizontalAlignment.Center;
                 stackPanel.Children.Add(FastFoodName);
 
-                TextBlock Adress = new TextBlock();
-                Adress.Text = adresseRestaurant;
-                Adress.HorizontalAlignment = HorizontalAlignment.Center;
-                stackPanel.Children.Add(Adress);
+                //TextBlock Adress = new TextBlock();
+                //Adress.Text = adresseRestaurant;
+                //Adress.HorizontalAlignment = HorizontalAlignment.Center;
+                //stackPanel.Children.Add(Adress);
 
-                TextBlock ZipCode = new TextBlock();
-                ZipCode.Text = "14000 Tiaret";
-                ZipCode.HorizontalAlignment = HorizontalAlignment.Center;
-                stackPanel.Children.Add(ZipCode);
+                //TextBlock ZipCode = new TextBlock();
+                //ZipCode.Text = "14000 Tiaret";
+                //ZipCode.HorizontalAlignment = HorizontalAlignment.Center;
+                //stackPanel.Children.Add(ZipCode);
 
-                TextBlock PhoneNumber = new TextBlock();
-                PhoneNumber.Text = "Tel : " + Telephone;
-                PhoneNumber.HorizontalAlignment = HorizontalAlignment.Center;
-                PhoneNumber.Margin = new Thickness(0, 2, 0, 10);
-                stackPanel.Children.Add(PhoneNumber);
+                //TextBlock PhoneNumber = new TextBlock();
+                //PhoneNumber.Text = "Tel : " + Telephone;
+                //PhoneNumber.HorizontalAlignment = HorizontalAlignment.Center;
+                //PhoneNumber.Margin = new Thickness(0, 2, 0, 10);
+                //stackPanel.Children.Add(PhoneNumber);
                 {
                     Grid grid = new Grid();
                     ColumnDefinition cd = new ColumnDefinition() { Width = new GridLength(10, GridUnitType.Star) };
@@ -265,7 +271,6 @@ namespace Ui.View
                 document.Pages.Add(pageContent);
             }
             // Send to the printer.
-            var pd = new PrintDialog();
             pd.PrintDocument(document.DocumentPaginator, "Rapport de ventes");
         }
     }
