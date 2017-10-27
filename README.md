@@ -3,7 +3,7 @@ Simple POS that alow the user to add/delete Items, create an invoice and print i
 I've created this application for a friend of mine, so It's not intended to be a professional application and it's far from being a complete solution. more complete solutions can be found on the web.
 
 # Framework
-this application was made using wpf and visual studio 2015
+this application was made with wpf using visual studio 2015
 
 # Database
 The Database is embded using Sql Server Compact and data is stored in the Data.sdf file in the Ui folder
