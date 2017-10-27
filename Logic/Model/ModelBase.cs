@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,23 +7,10 @@ namespace Logic.Model
 {
     public class ModelBase : IDataErrorInfo, INotifyPropertyChanged
     {
-        public string this[string columnName]
-        {
-            get
-            {
-                return OnValidate(columnName);
-            }
-        }
+        public string this[string columnName] => OnValidate(columnName);
 
         [NotMapped]
-        public string Error
-        {
-            get
-            {
-                //throw new NotImplementedException("get => MVVMHelper.ViewModel.Error");
-                return null;
-            }
-        }
+        public string Error => null;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -36,10 +22,10 @@ namespace Logic.Model
             };
 
             var results = new Collection<ValidationResult>();
-            var isValid = Validator.TryValidateProperty(this.GetType().GetProperty(propertyName).GetValue(this), context, results);
+            var isValid =
+                Validator.TryValidateProperty(GetType().GetProperty(propertyName).GetValue(this), context, results);
             //Validator.TryValidateObject(this, context, results);
             return !isValid ? results[0].ErrorMessage : null;
-
         }
 
         public bool IsValid()

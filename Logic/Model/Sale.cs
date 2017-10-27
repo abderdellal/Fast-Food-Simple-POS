@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Logic.Model
 {
@@ -12,32 +6,30 @@ namespace Logic.Model
     {
         public Sale()
         {
-
         }
-        public Sale(string ItemName, int unitPrice, int Amount)
+
+        public Sale(string itemName, int unitPrice, int amount)
         {
-            this.ItemName = ItemName;
-            this.UnitPrice = unitPrice;
-            this.Amount = Amount;
+            ItemName = itemName;
+            UnitPrice = unitPrice;
+            Amount = amount;
         }
 
-        public int SaleID { get; set; }
+        public int SaleId { get; set; }
         public string ItemName { get; set; }
         public int UnitPrice { get; set; }
         public int Amount { get; set; }
         public ItemType ItemType { get; set; }
 
         [NotMapped]
-        public int totalPrice
-        {
-            get
-            {
-                return UnitPrice * Amount;
-            }
-        }
+        public int TotalPrice => UnitPrice * Amount;
 
         public Invoice Invoice { get; set; }
     }
 
-    public enum ItemType { Sandwich, Boisson}
+    public enum ItemType
+    {
+        Sandwich,
+        Boisson
+    }
 }

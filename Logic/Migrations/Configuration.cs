@@ -1,8 +1,9 @@
+using System.Data.Entity.Migrations;
+using Logic.Model;
+
 namespace Logic.Migrations
 {
-    using System.Data.Entity.Migrations;
-
-    internal sealed class Configuration : DbMigrationsConfiguration<Logic.Model.FastFoodContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<FastFoodContext>
     {
         public Configuration()
         {
@@ -11,7 +12,7 @@ namespace Logic.Migrations
             ContextKey = "Logic.Model.FastFoodContext";
         }
 
-        protected override void Seed(Logic.Model.FastFoodContext context)
+        protected override void Seed(FastFoodContext context)
         {
             //  This method will be called after migrating to the latest version.
 

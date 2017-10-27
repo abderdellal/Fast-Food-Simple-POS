@@ -1,53 +1,43 @@
-﻿using GalaSoft.MvvmLight;
+﻿using System.Collections.ObjectModel;
+using System.Data.Entity;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Logic.Model;
 using Logic.ViewModel.Messages;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Logic.ViewModel
 {
     public class ItemsViewModel : ViewModelBase
     {
-        public ObservableCollection<Item> ItemList { get; set; }
-        public RelayCommand<Item> DeleteItemCommand { get; set; } 
-
         public ItemsViewModel()
         {
-            populateView();
+            PopulateView();
 
             DeleteItemCommand = new RelayCommand<Item>(item =>
             {
                 using (var ctx = new FastFoodContext())
                 {
-                    ctx.Entry(item).State = System.Data.Entity.EntityState.Deleted;
+                    ctx.Entry(item).State = EntityState.Deleted;
                     ctx.SaveChanges();
                     ItemList.Remove(item);
                 }
                 MessengerInstance.Send(new ItemDeletedMessage());
             });
 
-            MessengerInstance.Register<ItemAddedMessage>(this, m =>
-            {
-                populateView();
-            });
+            MessengerInstance.Register<ItemAddedMessage>(this, m => { PopulateView(); });
         }
 
-        private void populateView()
+        public ObservableCollection<Item> ItemList { get; set; }
+        public RelayCommand<Item> DeleteItemCommand { get; set; }
+
+        private void PopulateView()
         {
             ItemList = new ObservableCollection<Item>();
             using (var ctx = new FastFoodContext())
             {
-                foreach (Item item in ctx.Items)
-                {
+                foreach (var item in ctx.Items)
                     ItemList.Add(item);
-                }
             }
-
         }
     }
 }

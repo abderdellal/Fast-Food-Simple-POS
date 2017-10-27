@@ -3,32 +3,38 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Ui"
+        xmlns:viewModel="clr-namespace:Logic.ViewModel;assembly=Logic"
         mc:Ignorable="d"
-        Title="{StaticResource Log_In}" Height="300" Width="600" Icon="manifest.ico">
+        Title="{StaticResource Log_In}" Height="300" Width="600" Icon="manifest.ico" d:DataContext="{d:DesignInstance viewModel:LoginViewModel}">
     <Grid>
-        <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
+                    <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
+                
+                
+                <TextBlock Grid.Column="0" Grid.Row="0" Text="{StaticResource User_Name}" HorizontalAlignment="Right"
+                           Margin="0,10,30,10" FontSize="20" />
+                <TextBlock Grid.Column="0" Grid.Row="1" Text="{StaticResource Password}" HorizontalAlignment="Right"
+                           Margin="0,10,30,10" FontSize="20" />
 
-                <TextBlock Text="{Binding Path=SelectedUser.UserName}" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" Margin="30,10,0,10" FontSize="20"/>
-                <TextBlock Text="{Binding Path=SelectedUser.UserType}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" Margin="30,10,0,10" FontSize="20"/>
-                <TextBlock Grid.Column="0" Grid.Row="0" Text="{StaticResource User_Name}" HorizontalAlignment="Right" Margin="0,10,30,10" FontSize="20"/>
-                <TextBlock Grid.Column="0" Grid.Row="1" Text="{StaticResource Password}" HorizontalAlignment="Right" Margin="0,10,30,10" FontSize="20"/>
-
-                <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="30,10,0,10" FontSize="20" MinWidth="180"/>
-                <PasswordBox  Grid.Column="1" Grid.Row="1" PasswordChanged="PasswordBox_PasswordChanged" HorizontalAlignment="Left" Margin="30,10,0,10" FontSize="20" MinWidth="180"/>
+                <TextBox Grid.Column="1" Grid.Row="0"
+                         Text="{Binding UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         HorizontalAlignment="Left" Margin="30,10,0,10" FontSize="20" MinWidth="180" />
+                <PasswordBox Grid.Column="1" Grid.Row="1" PasswordChanged="PasswordBox_PasswordChanged"
+                             HorizontalAlignment="Left" Margin="30,10,0,10" FontSize="20" MinWidth="180" />
 
             </Grid>
-            <Button Content="{StaticResource Log_In}" HorizontalAlignment="Center" Margin="0,30" Command="{Binding LoginCommand}"/>
-            <TextBlock Text="{Binding ErrorMessage}" Foreground="Red" HorizontalAlignment="Center" Margin="30,10,0,10" FontSize="20" MinWidth="180"/>
+            <Button Content="{StaticResource Log_In}" HorizontalAlignment="Center" Margin="0,30"
+                    Command="{Binding LoginCommand}" />
+            <TextBlock Text="{Binding ErrorMessage}" Foreground="Red" HorizontalAlignment="Center" Margin="30,10,0,10"
+                       FontSize="20" MinWidth="180" />
         </StackPanel>
     </Grid>
 </Window>

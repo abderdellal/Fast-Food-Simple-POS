@@ -1,10 +1,10 @@
 ﻿<UserControl x:Class="Ui.View.AddItemView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Ui.View"
-             mc:Ignorable="d" Width="662" Height="405">
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModel="clr-namespace:Logic.ViewModel;assembly=Logic"
+             mc:Ignorable="d" Width="662" Height="405" d:DataContext="{d:DesignInstance Type=viewModel:AddItemViewModel }">
 
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,30,0,20">
         <Grid.ColumnDefinitions>
@@ -13,22 +13,32 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition Height="120"/>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="120" />
         </Grid.RowDefinitions>
 
-        <TextBlock Text="{StaticResource Item_name}" Grid.Column="0" Grid.Row="0" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Right"  Margin="0,10,50,10"/>
-        <TextBlock Text="{StaticResource price}" Grid.Column="0" Grid.Row="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Right"  Margin="0,10,50,10"/>
-        <TextBlock Text="{StaticResource ItemType}" Grid.Column="0" Grid.Row="2" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Right"  Margin="0,10,50,10"/>
-        <TextBox Text="{Binding Path=item.ItemName, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Width="300" FontSize="20" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="50,10,50,10" />
-        <TextBox Text="{Binding Path=item.ItemPrice, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Width="300" FontSize="20" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="50,10,50,10" />
-        <ComboBox SelectedItem="{Binding Path=item.ItemType}" ItemsSource="{Binding MyEnumTypeValues}" Grid.Column="1" Grid.Row="2" Width="300"/>
+        <TextBlock Text="{StaticResource Item_name}" Grid.Column="0" Grid.Row="0" FontSize="20"
+                   VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,10,50,10" />
+        <TextBlock Text="{StaticResource price}" Grid.Column="0" Grid.Row="1" FontSize="20" VerticalAlignment="Center"
+                   HorizontalAlignment="Right" Margin="0,10,50,10" />
+        <TextBlock Text="{StaticResource ItemType}" Grid.Column="0" Grid.Row="2" FontSize="20"
+                   VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,10,50,10" />
+        <TextBox Text="{Binding Path=Item.ItemName, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                 Width="300" FontSize="20" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center"
+                 HorizontalAlignment="Left" Margin="50,10,50,10" />
+        <TextBox Text="{Binding Path=Item.ItemPrice, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                 Width="300" FontSize="20" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"
+                 HorizontalAlignment="Left" Margin="50,10,50,10" />
+        <ComboBox SelectedItem="{Binding Path=Item.ItemType}" ItemsSource="{Binding MyEnumTypeValues}" Grid.Column="1"
+                  Grid.Row="2" Width="300" />
 
         <StackPanel Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="3">
-            <Button Command="{Binding SaveCommande}" Content="Ajouter"  VerticalAlignment="Center" HorizontalAlignment="Center" Height="50" Width="120" Margin="0, 15, 0, 10"/>
-            <TextBlock Text="{Binding formulaireValide, Mode=OneWay}" FontSize="20" Foreground="Green" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="0,15,0,10"/>
+            <Button Command="{Binding SaveCommand}" Content="Ajouter" VerticalAlignment="Center"
+                    HorizontalAlignment="Center" Height="50" Width="120" Margin="0, 15, 0, 10" />
+            <TextBlock Text="{Binding FormulaireValide, Mode=OneWay}" FontSize="20" Foreground="Green"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,15,0,10" />
         </StackPanel>
     </Grid>
 </UserControl>

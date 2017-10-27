@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Logic.Model
 {
@@ -14,7 +11,7 @@ namespace Logic.Model
             Sales = new List<Sale>();
         }
 
-        public int InvoiceID { get; set; }
+        public int InvoiceId { get; set; }
         public DateTime InvoiceDate { get; set; }
 
         public ICollection<Sale> Sales { get; set; }

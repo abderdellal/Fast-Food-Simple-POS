@@ -6,15 +6,15 @@ namespace Logic.Model
     {
         public Item()
         {
-
         }
+
         public Item(string name, int price)
         {
             ItemName = name;
             ItemPrice = price;
         }
 
-        public int ItemID { get; set; }
+        public int ItemId { get; set; }
 
         [Required]
         public string ItemName { get; set; }

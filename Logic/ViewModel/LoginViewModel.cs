@@ -1,27 +1,50 @@
-﻿using GalaSoft.MvvmLight.Command;
-using Logic.Model;
-using System;
+﻿using System;
 using System.Linq;
-using Logic.Properties;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using Logic.Model;
+using Logic.Properties;
 
 namespace Logic.ViewModel
 {
     public class LoginViewModel : ViewModelBase
     {
-
         public static User LoggedUser;
-        public event EventHandler OnRequestClose;
+
+        private string _password;
+
+        private string _userName;
+
+        public LoginViewModel()
+        {
+            LoginCommand = new RelayCommand(() =>
+                {
+                    using (var ctx = new FastFoodContext())
+                    {
+                        var user = ctx.Users.Where(u => u.UserName == UserName).FirstOrDefault();
+                        if (user != null)
+                            if (user.MotDePass == Password)
+                            {
+                                LoggedUser = user;
+                                OnRequestClose(this, new EventArgs());
+                            }
+                            else
+                            {
+                                ErrorMessage = Resources.Wrong_Password;
+                            }
+                        else
+                            ErrorMessage = Resources.Wrong_UserName;
+                    }
+                },
+                () => UserName != null && UserName.Length > 0 && Password != null && Password.Length > 0);
+        }
+
         public RelayCommand LoginCommand { get; set; }
         public string ErrorMessage { get; set; }
 
-        private string _userName;
         public string UserName
         {
-            get
-            {
-                return _userName;
-            }
+            get { return _userName; }
             set
             {
                 _userName = value;
@@ -29,13 +52,9 @@ namespace Logic.ViewModel
             }
         }
 
-        private string _password;
         public string Password
         {
-            get
-            {
-                return _password;
-            }
+            get { return _password; }
             set
             {
                 _password = value;
@@ -43,32 +62,6 @@ namespace Logic.ViewModel
             }
         }
 
-        public LoginViewModel()
-        {
-            LoginCommand = new RelayCommand(() =>
-            {
-                using (var ctx = new FastFoodContext())
-                {
-                    User user = ctx.Users.Where(u => u.UserName == UserName).FirstOrDefault();
-                    if(user != null)
-                    {
-                        if(user.MotDePass == Password)
-                        {
-                            LoggedUser = user;
-                            OnRequestClose(this, new EventArgs());
-                        }
-                        else
-                        {
-                            ErrorMessage = Resources.Wrong_Password;
-                        }
-                    }
-                    else
-                    {
-                        ErrorMessage = Resources.Wrong_UserName;
-                    }
-                }
-            },
-            () => UserName != null && UserName.Length > 0 && Password != null && Password.Length > 0);
-        }
+        public event EventHandler OnRequestClose;
     }
 }

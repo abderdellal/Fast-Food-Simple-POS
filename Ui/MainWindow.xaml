@@ -25,58 +25,64 @@
 
     <DockPanel>
         <StackPanel DockPanel.Dock="Left" Visibility="{Binding DisplayIconBar}" Margin="2,0,15,0">
-            <Image Source=".\Resources\FastFoodIconMenu.png" Width="180"/>
-            <Image Source=".\Resources\FastFoodIconMenu.png" Width="180"/>
-            <Image Source=".\Resources\FastFoodIconMenu.png" Width="180"/>
-            <Image Source=".\Resources\FastFoodIconMenu.png" Width="180"/>
-            <Image Source=".\Resources\FastFoodIconMenu.png" Width="180"/>
-            <Image Source=".\Resources\FastFoodIconMenu.png" Width="180"/>
-            <Image Source=".\Resources\FastFoodIconMenu.png" Width="180"/>
+            <Image Source=".\Resources\FastFoodIconMenu.png" Width="180" />
+            <Image Source=".\Resources\FastFoodIconMenu.png" Width="180" />
+            <Image Source=".\Resources\FastFoodIconMenu.png" Width="180" />
+            <Image Source=".\Resources\FastFoodIconMenu.png" Width="180" />
+            <Image Source=".\Resources\FastFoodIconMenu.png" Width="180" />
+            <Image Source=".\Resources\FastFoodIconMenu.png" Width="180" />
+            <Image Source=".\Resources\FastFoodIconMenu.png" Width="180" />
         </StackPanel>
         <!-- Main Menu-->
-        <Menu DockPanel.Dock="Left" BorderThickness="2" Margin="0,0,20,0" Background="BlueViolet" Visibility="{Binding DisplayMenu}">
+        <Menu DockPanel.Dock="Left" BorderThickness="2" Margin="0,0,20,0" Background="BlueViolet"
+              Visibility="{Binding DisplayMenu}">
             <Menu.Resources>
                 <Style TargetType="MenuItem">
-                    <Setter Property="Height" Value="100"/>
-                    <Setter Property="FontSize" Value="25"/>
-                    <Setter Property="BorderBrush" Value="Green"/>
+                    <Setter Property="Height" Value="100" />
+                    <Setter Property="FontSize" Value="25" />
+                    <Setter Property="BorderBrush" Value="Green" />
                 </Style>
             </Menu.Resources>
 
             <Menu.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <VirtualizingStackPanel Orientation="Vertical"/>
+                    <VirtualizingStackPanel Orientation="Vertical" />
                 </ItemsPanelTemplate>
             </Menu.ItemsPanel>
 
-            <MenuItem Header="{StaticResource Home}" Command="{Binding changeViewCommand}" CommandParameter="{Binding Home, Source={StaticResource Locator}}" Background="Red">
+            <MenuItem Header="{StaticResource Home}" Command="{Binding ChangeViewCommand}"
+                      CommandParameter="{Binding Home, Source={StaticResource Locator}}" Background="Red">
                 <MenuItem.Icon>
-                    <materialDesign:PackIcon Kind="HomeModern"/>
+                    <materialDesign:PackIcon Kind="HomeModern" />
                 </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Header="{StaticResource Items}" Command="{Binding changeViewCommand}" CommandParameter="{Binding Items, Source={StaticResource Locator}}">
+            <MenuItem Header="{StaticResource Items}" Command="{Binding ChangeViewCommand}"
+                      CommandParameter="{Binding Items, Source={StaticResource Locator}}">
                 <MenuItem.Icon>
-                    <materialDesign:PackIcon Kind="Food"/>
+                    <materialDesign:PackIcon Kind="Food" />
                 </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Header="{StaticResource Add_Item}" Command="{Binding changeViewCommand}" CommandParameter="{Binding AddItem, Source={StaticResource Locator}}">
+            <MenuItem Header="{StaticResource Add_Item}" Command="{Binding ChangeViewCommand}"
+                      CommandParameter="{Binding AddItem, Source={StaticResource Locator}}">
                 <MenuItem.Icon>
-                    <materialDesign:PackIcon Kind="PlusBox"/>
+                    <materialDesign:PackIcon Kind="PlusBox" />
                 </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Header="{StaticResource Sales}" Command="{Binding changeViewCommand}" CommandParameter="{Binding SalesHistory, Source={StaticResource Locator}}">
+            <MenuItem Header="{StaticResource Sales}" Command="{Binding ChangeViewCommand}"
+                      CommandParameter="{Binding SalesHistory, Source={StaticResource Locator}}">
                 <MenuItem.Icon>
-                    <materialDesign:PackIcon Kind="FormatListBulleted"/>
+                    <materialDesign:PackIcon Kind="FormatListBulleted" />
                 </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Header="{StaticResource Users}" Command="{Binding changeViewCommand}" CommandParameter="{Binding Users, Source={StaticResource Locator}}">
+            <MenuItem Header="{StaticResource Users}" Command="{Binding ChangeViewCommand}"
+                      CommandParameter="{Binding Users, Source={StaticResource Locator}}">
                 <MenuItem.Icon>
-                    <materialDesign:PackIcon Kind="Account"/>
+                    <materialDesign:PackIcon Kind="Account" />
                 </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Header="{StaticResource Exit}" Click="MenuItem_Click" >
+            <MenuItem Header="{StaticResource Exit}" Click="MenuItem_Click">
                 <MenuItem.Icon>
-                    <materialDesign:PackIcon Kind="Logout"/>
+                    <materialDesign:PackIcon Kind="Logout" />
                 </MenuItem.Icon>
             </MenuItem>
 
@@ -85,23 +91,23 @@
 
         <!-- this Content control will change the displayed view according to the SelectedViewModel property in the MainViewModel -->
 
-        <ContentControl  Content="{Binding SelectedViewModel}" >
+        <ContentControl Content="{Binding SelectedViewModel}">
             <ContentControl.Resources>
                 <!-- DataTemplates to bind ViewModels to Views-->
                 <DataTemplate DataType="{x:Type ViewModels:HomeViewModel}">
-                    <Views:HomeView/>
+                    <Views:HomeView />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type ViewModels:ItemsViewModel}">
-                    <Views:ItemsView/>
+                    <Views:ItemsView />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type ViewModels:AddItemViewModel}">
-                    <Views:AddItemView/>
+                    <Views:AddItemView />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type ViewModels:SalesHistoryViewModel}">
-                    <Views:SalesHistoryView/>
+                    <Views:SalesHistoryView />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type ViewModels:UsersViewModel}">
-                    <Views:UsersView/>
+                    <Views:UsersView />
                 </DataTemplate>
             </ContentControl.Resources>
         </ContentControl>

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Logic.ViewModel.Messages
+﻿namespace Logic.ViewModel.Messages
 {
-    class ItemDeletedMessage
+    internal class ItemDeletedMessage
     {
     }
 }

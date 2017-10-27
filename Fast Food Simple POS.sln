@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EL BEYLIK", "Ui\EL BEYLIK.csproj", "{CA691805-73FD-4F45-9006-42A848362EAE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ui", "Ui\Ui.csproj", "{CA691805-73FD-4F45-9006-42A848362EAE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj", "{4EF32657-63E8-450C-A5FC-000A0F0E06A0}"
 EndProject
@@ -11,10 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".shared", ".shared", "{56B7
 	ProjectSection(SolutionItems) = preProject
 		.shared\SharedAssemblyInfo.cs = .shared\SharedAssemblyInfo.cs
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Create key", "Create Key\Create key.csproj", "{25A4E632-FA25-4ABE-A26E-EA882D22DAA1}"
-EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "EL BEYLIK SHAWARMA", "EL REYLIK SETUP\EL REYLIK STEUP.vdproj", "{2818D84C-7EC6-48E5-AD35-E47A7B9F6AFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,12 +26,6 @@ Global
 		{4EF32657-63E8-450C-A5FC-000A0F0E06A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EF32657-63E8-450C-A5FC-000A0F0E06A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4EF32657-63E8-450C-A5FC-000A0F0E06A0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{25A4E632-FA25-4ABE-A26E-EA882D22DAA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{25A4E632-FA25-4ABE-A26E-EA882D22DAA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{25A4E632-FA25-4ABE-A26E-EA882D22DAA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{25A4E632-FA25-4ABE-A26E-EA882D22DAA1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2818D84C-7EC6-48E5-AD35-E47A7B9F6AFE}.Debug|Any CPU.ActiveCfg = Debug
-		{2818D84C-7EC6-48E5-AD35-E47A7B9F6AFE}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

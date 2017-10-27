@@ -1,24 +1,33 @@
-﻿using Logic.Model;
-using Logic.ViewModel;
-using System.Collections.Generic;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Printing;
+using System.Windows;
+using System.Windows.Controls;
+using Logic.Model;
+using Logic.ViewModel;
+using Point = System.Windows.Point;
+using Size = System.Windows.Size;
 
 namespace Ui.View
 {
     /// <summary>
-    /// Interaction logic for HomeView.xaml
+    ///     Interaction logic for HomeView.xaml
     /// </summary>
     public partial class HomeView : UserControl
     {
+        private readonly List<string> _itemList = new List<string>
+        {
+            "201", //fill from somewhere in your code
+            "202"
+        };
+
+        private readonly PrintDocument _mPrintDocument = new PrintDocument();
+
         public HomeView()
         {
             InitializeComponent();
 
-            m_printDocument.PrintPage += new PrintPageEventHandler(printPage);
-
+            _mPrintDocument.PrintPage += PrintPage;
         }
 
         //on selection change, set the selected sale in the view model
@@ -26,30 +35,26 @@ namespace Ui.View
         {
             if (DataContext is HomeViewModel)
             {
-                HomeViewModel viewmodel = (HomeViewModel)DataContext;
+                var viewmodel = (HomeViewModel) DataContext;
                 if (viewmodel != null)
-                {
                     if (myListView != null)
-                    {
                         if (myListView.SelectedItem != null && myListView.SelectedItem is Sale)
-                            viewmodel.SelectSale((Sale)myListView.SelectedItem);
-                    }
-                }
+                            viewmodel.SelectSale((Sale) myListView.SelectedItem);
             }
         }
 
-        private void Print_Invoice(object sender, System.Windows.RoutedEventArgs e)
+        private void Print_Invoice(object sender, RoutedEventArgs e)
         {
-            string nomRestaurant = "EL BEYLIK SHAWARMA"; //majuscule !
-            string adresseRestaurant = "En face de l'arret Sougueur";
-            string Telephone = "0770746106";
-            string telephone2 = "0798252738";
+            var nomRestaurant = "EL BEYLIK SHAWARMA"; //majuscule !
+            var adresseRestaurant = "En face de l'arret Sougueur";
+            var telephone = "0770746106";
+            var telephone2 = "0798252738";
 
-            HomeViewModel vm = (HomeViewModel)DataContext;
+            var vm = (HomeViewModel) DataContext;
 
-            PrintDialog dialog = new PrintDialog();
-            
-            StackPanel myPanel = new StackPanel();
+            var dialog = new PrintDialog();
+
+            var myPanel = new StackPanel();
             myPanel.Margin = new Thickness(15, 0, 0, 15);
             myPanel.Width = 240;
             //System.Windows.Controls.Image Icon = new System.Windows.Controls.Image();
@@ -59,56 +64,56 @@ namespace Ui.View
             //Icon.Source = new BitmapImage(new Uri(".\\FastFoodIconReceipt.png", UriKind.Relative));
             //myPanel.Children.Add(Icon);
 
-            TextBlock FastFoodName = new TextBlock();
-            FastFoodName.Text = nomRestaurant;
-            FastFoodName.HorizontalAlignment = HorizontalAlignment.Center;
-            myPanel.Children.Add(FastFoodName);
+            var fastFoodName = new TextBlock();
+            fastFoodName.Text = nomRestaurant;
+            fastFoodName.HorizontalAlignment = HorizontalAlignment.Center;
+            myPanel.Children.Add(fastFoodName);
 
-            TextBlock Adress = new TextBlock();
-            Adress.Text = adresseRestaurant;
-            Adress.HorizontalAlignment = HorizontalAlignment.Center;
-            myPanel.Children.Add(Adress);
+            var adress = new TextBlock();
+            adress.Text = adresseRestaurant;
+            adress.HorizontalAlignment = HorizontalAlignment.Center;
+            myPanel.Children.Add(adress);
 
             //TextBlock ZipCode = new TextBlock();
             //ZipCode.Text = "14000 Tiaret";
             //ZipCode.HorizontalAlignment = HorizontalAlignment.Center;
             //myPanel.Children.Add(ZipCode);
 
-            TextBlock PhoneNumber = new TextBlock();
-            PhoneNumber.Text = "Tel : " + Telephone;
-            PhoneNumber.HorizontalAlignment = HorizontalAlignment.Center;
+            var phoneNumber = new TextBlock();
+            phoneNumber.Text = "Tel : " + telephone;
+            phoneNumber.HorizontalAlignment = HorizontalAlignment.Center;
             //PhoneNumber.Margin = new Thickness(0, 2, 0, 10);
-            myPanel.Children.Add(PhoneNumber);
+            myPanel.Children.Add(phoneNumber);
 
-            TextBlock PhoneNumber2 = new TextBlock();
-            PhoneNumber2.Text = "Tel : " + telephone2;
-            PhoneNumber2.HorizontalAlignment = HorizontalAlignment.Center;
-            PhoneNumber2.Margin = new Thickness(0, 2, 0, 10);
-            myPanel.Children.Add(PhoneNumber2);
+            var phoneNumber2 = new TextBlock();
+            phoneNumber2.Text = "Tel : " + telephone2;
+            phoneNumber2.HorizontalAlignment = HorizontalAlignment.Center;
+            phoneNumber2.Margin = new Thickness(0, 2, 0, 10);
+            myPanel.Children.Add(phoneNumber2);
 
             {
-                Grid grid = new Grid();
-                ColumnDefinition cd = new ColumnDefinition() { Width = new GridLength(20, GridUnitType.Star) };
+                var grid = new Grid();
+                var cd = new ColumnDefinition {Width = new GridLength(20, GridUnitType.Star)};
                 grid.ColumnDefinitions.Add(cd);
-                ColumnDefinition cd2 = new ColumnDefinition() { Width = new GridLength(60, GridUnitType.Star) };
+                var cd2 = new ColumnDefinition {Width = new GridLength(60, GridUnitType.Star)};
                 grid.ColumnDefinitions.Add(cd2);
-                ColumnDefinition cd3 = new ColumnDefinition() { Width = new GridLength(20, GridUnitType.Star) };
+                var cd3 = new ColumnDefinition {Width = new GridLength(20, GridUnitType.Star)};
                 grid.ColumnDefinitions.Add(cd3);
                 grid.Margin = new Thickness(10, 1, 0, 5);
 
-                TextBlock amount = new TextBlock();
+                var amount = new TextBlock();
                 amount.Text = "Qte";
                 amount.FontWeight = FontWeights.Bold;
                 grid.Children.Add(amount);
                 Grid.SetColumn(amount, 0);
 
-                TextBlock itemName = new TextBlock();
+                var itemName = new TextBlock();
                 itemName.Text = "Article";
                 itemName.FontWeight = FontWeights.Bold;
                 grid.Children.Add(itemName);
                 Grid.SetColumn(itemName, 1);
 
-                TextBlock totalPrice = new TextBlock();
+                var totalPrice = new TextBlock();
                 totalPrice.Text = "TOT(DA)";
                 totalPrice.FontWeight = FontWeights.Bold;
                 grid.Children.Add(totalPrice);
@@ -116,34 +121,32 @@ namespace Ui.View
 
                 myPanel.Children.Add(grid);
                 myPanel.Children.Add(new Separator());
-
             }
 
-            foreach (Sale sale in vm.Sales)
+            foreach (var sale in vm.Sales)
             {
-                Grid grid = new Grid();
-                ColumnDefinition cd = new ColumnDefinition() { Width = new GridLength(20, GridUnitType.Star) };
+                var grid = new Grid();
+                var cd = new ColumnDefinition {Width = new GridLength(20, GridUnitType.Star)};
                 grid.ColumnDefinitions.Add(cd);
-                ColumnDefinition cd2 = new ColumnDefinition() { Width = new GridLength(60, GridUnitType.Star) };
+                var cd2 = new ColumnDefinition {Width = new GridLength(60, GridUnitType.Star)};
                 grid.ColumnDefinitions.Add(cd2);
-                ColumnDefinition cd3 = new ColumnDefinition() { Width = new GridLength(20, GridUnitType.Star) };
+                var cd3 = new ColumnDefinition {Width = new GridLength(20, GridUnitType.Star)};
                 grid.ColumnDefinitions.Add(cd3);
                 grid.Margin = new Thickness(10, 1, 0, 0);
 
-                TextBlock amount = new TextBlock();
+                var amount = new TextBlock();
                 amount.Text = sale.Amount + "";
                 grid.Children.Add(amount);
                 Grid.SetColumn(amount, 0);
 
-                TextBlock itemName = new TextBlock();
+                var itemName = new TextBlock();
                 itemName.Text = sale.ItemName;
                 grid.Children.Add(itemName);
                 Grid.SetColumn(itemName, 1);
 
 
-
-                TextBlock totalPrice = new TextBlock();
-                totalPrice.Text = sale.totalPrice + "";
+                var totalPrice = new TextBlock();
+                totalPrice.Text = sale.TotalPrice + "";
                 grid.Children.Add(totalPrice);
                 Grid.SetColumn(totalPrice, 2);
 
@@ -151,7 +154,7 @@ namespace Ui.View
                 myPanel.Children.Add(new Separator());
             }
 
-            TextBlock totalPriceInvoice = new TextBlock();
+            var totalPriceInvoice = new TextBlock();
             totalPriceInvoice.Text = "TOTAL: " + vm.Total + " DA";
             totalPriceInvoice.HorizontalAlignment = HorizontalAlignment.Right;
             totalPriceInvoice.FontWeight = FontWeights.Bold;
@@ -160,62 +163,51 @@ namespace Ui.View
 
             myPanel.Children.Add(new Separator());
 
-            TextBlock welcom = new TextBlock();
+            var welcom = new TextBlock();
             welcom.Text = nomRestaurant;
             welcom.HorizontalAlignment = HorizontalAlignment.Center;
             myPanel.Children.Add(welcom);
 
-            TextBlock welcom2 = new TextBlock();
+            var welcom2 = new TextBlock();
             welcom2.Text = " VOUS SOUHAITE LA BIEN VENUE";
             welcom2.HorizontalAlignment = HorizontalAlignment.Center;
             myPanel.Children.Add(welcom2);
 
-            myPanel.Measure(new System.Windows.Size(dialog.PrintableAreaWidth,
-              dialog.PrintableAreaHeight));
-            myPanel.Arrange(new Rect(new System.Windows.Point(0, 0),
-              myPanel.DesiredSize));
+            myPanel.Measure(new Size(dialog.PrintableAreaWidth,
+                dialog.PrintableAreaHeight));
+            myPanel.Arrange(new Rect(new Point(0, 0),
+                myPanel.DesiredSize));
 
             dialog.PrintVisual(myPanel, "A Great Image.");
-
         }
 
-        List<string> itemList = new List<string>()
-{
-    "201", //fill from somewhere in your code
-    "202"
-};
-
-        PrintDocument m_printDocument = new PrintDocument();
-
-        private void Print_Invoice2(object sender, System.Windows.RoutedEventArgs e)
+        private void Print_Invoice2(object sender, RoutedEventArgs e)
         {
-            m_printDocument.Print();
+            _mPrintDocument.Print();
         }
 
-        public void printPage(object sender, PrintPageEventArgs e)
+        public void PrintPage(object sender, PrintPageEventArgs e)
         {
+            var graphics = e.Graphics;
 
-            Graphics graphics = e.Graphics;
-
-            Font regular = new Font(System.Drawing.FontFamily.GenericSansSerif, 10.0f, System.Drawing.FontStyle.Regular);
-            Font bold = new Font(System.Drawing.FontFamily.GenericSansSerif, 10.0f, System.Drawing.FontStyle.Bold);
+            var regular = new Font(System.Drawing.FontFamily.GenericSansSerif, 10.0f, System.Drawing.FontStyle.Regular);
+            var bold = new Font(System.Drawing.FontFamily.GenericSansSerif, 10.0f, System.Drawing.FontStyle.Bold);
 
             //print header
-            graphics.DrawString("FERREIRA MATERIALS PARA CONSTRUCAO LTDA", bold, System.Drawing.Brushes.Black, 20, 10);
-            graphics.DrawString("EST ENGENHEIRO MARCILAC, 116, SAO PAOLO - SP", regular, System.Drawing.Brushes.Black, 30, 30);
-            graphics.DrawString("Telefone: (11)5921-3826", regular, System.Drawing.Brushes.Black, 110, 50);
+            graphics.DrawString("FERREIRA MATERIALS PARA CONSTRUCAO LTDA", bold, Brushes.Black, 20, 10);
+            graphics.DrawString("EST ENGENHEIRO MARCILAC, 116, SAO PAOLO - SP", regular, Brushes.Black, 30, 30);
+            graphics.DrawString("Telefone: (11)5921-3826", regular, Brushes.Black, 110, 50);
             graphics.DrawLine(Pens.Black, 80, 70, 320, 70);
-            graphics.DrawString("CUPOM NAO FISCAL", bold, System.Drawing.Brushes.Black, 110, 80);
+            graphics.DrawString("CUPOM NAO FISCAL", bold, Brushes.Black, 110, 80);
             graphics.DrawLine(Pens.Black, 80, 100, 320, 100);
 
             //print items
-            graphics.DrawString("COD | DESCRICAO                      | QTY | X | Vir Unit | Vir Total |", bold, System.Drawing.Brushes.Black, 10, 120);
+            graphics.DrawString("COD | DESCRICAO                      | QTY | X | Vir Unit | Vir Total |", bold,
+                Brushes.Black, 10, 120);
             graphics.DrawLine(Pens.Black, 10, 140, 430, 140);
 
-            for (int i = 0; i < itemList.Count; i++)
-            {
-                graphics.DrawString(itemList[i].ToString(), regular, System.Drawing.Brushes.Black, 20, 150 + i * 20);
-            }
+            for (var i = 0; i < _itemList.Count; i++)
+                graphics.DrawString(_itemList[i], regular, Brushes.Black, 20, 150 + i * 20);
 
             //print footer
             //...
@@ -224,7 +216,7 @@ namespace Ui.View
             bold.Dispose();
 
             // Check to see if more pages are to be printed.
-            e.HasMorePages = (itemList.Count > 20);
+            e.HasMorePages = _itemList.Count > 20;
         }
     }
 }

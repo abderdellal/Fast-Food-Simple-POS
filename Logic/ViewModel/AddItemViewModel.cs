@@ -1,56 +1,48 @@
-﻿using GalaSoft.MvvmLight;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Logic.Model;
 using Logic.Properties;
 using Logic.ViewModel.Messages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Logic.ViewModel
 {
     public class AddItemViewModel : ViewModelBase
     {
-        public Item item { get; set; }
-        public string formulaireValide { get; set; }
-        public RelayCommand SaveCommande { get; set; }
-        public IEnumerable<ItemType> MyEnumTypeValues
-        {
-            get
-            {
-                return Enum.GetValues(typeof(ItemType))
-                    .Cast<ItemType>();
-            }
-        }
-
         public AddItemViewModel()
         {
-            item = new Item();
-            formulaireValide = null;
-            SaveCommande = new RelayCommand(Save, IsValid);
-            item.PropertyChanged += (x, y) =>
-            {
-                SaveCommande.RaiseCanExecuteChanged();
-            };
+            Item = new Item();
+            FormulaireValide = null;
+            SaveCommand = new RelayCommand(Save, IsValid);
+            Item.PropertyChanged += (x, y) => { SaveCommand.RaiseCanExecuteChanged(); };
         }
+
+        public Item Item { get; set; }
+        public string FormulaireValide { get; set; }
+        public RelayCommand SaveCommand { get; set; }
+
+        public IEnumerable<ItemType> MyEnumTypeValues => Enum.GetValues(typeof(ItemType))
+            .Cast<ItemType>();
 
         public bool IsValid()
         {
-            formulaireValide = null;
-            return item.IsValid();
+            FormulaireValide = null;
+            return Item.IsValid();
         }
+
         private void Save()
         {
             using (var ctx = new FastFoodContext())
             {
-
-                ctx.Items.Add(item);
+                ctx.Items.Add(Item);
                 ctx.SaveChanges();
             }
-            formulaireValide = Resources.ItemAdded;
+            FormulaireValide = Resources.ItemAdded;
             MessengerInstance.Send(new ItemAddedMessage());
-            item.ItemName = "";
-            item.ItemPrice = 0;
+            Item.ItemName = "";
+            Item.ItemPrice = 0;
         }
     }
 }

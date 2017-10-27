@@ -1,61 +1,29 @@
-﻿using GalaSoft.MvvmLight;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Logic.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Logic.ViewModel
 {
     public class UsersViewModel : ViewModelBase
     {
-        public List<User> users { get; set; }
-        public User SelectedUser { get; set; }
+        private string _newPassword = "";
 
-        private string _NewUserName = "";
-        public string NewUserName
-        {
-            get
-            {
-                return _NewUserName;
-            }
-            set
-            {
-                _NewUserName = value;
-                RaisePropertyChanged("NewUserName");
-                saveCommand.RaiseCanExecuteChanged();
-            }
-        }
-
-        private string _NewPassword = "";
-        public string NewPassword {
-            get
-            {
-               return  _NewPassword;
-            }
-            set
-            {
-                _NewPassword = value;
-                RaisePropertyChanged("NewPassword");
-                saveCommand.RaiseCanExecuteChanged();
-            }
-        }
-        public RelayCommand<User> SelectUserCommand { get; set; }
-        public RelayCommand saveCommand { get; set; }
+        private string _newUserName = "";
 
         public UsersViewModel()
         {
-            saveCommand = new RelayCommand(Save, CanSave);
+            SaveCommand = new RelayCommand(Save, CanSave);
 
             using (var ctx = new FastFoodContext())
             {
-                users = ctx.Users.ToList();
+                Users = ctx.Users.ToList();
             }
-            if (users.Count > 0)
+            if (Users.Count > 0)
             {
-                SelectedUser = users.First();
+                SelectedUser = Users.First();
                 NewUserName = SelectedUser.UserName;
             }
 
@@ -64,7 +32,7 @@ namespace Logic.ViewModel
                 SelectedUser = user;
                 NewUserName = user.UserName;
                 NewPassword = "";
-                saveCommand.RaiseCanExecuteChanged();
+                SaveCommand.RaiseCanExecuteChanged();
             });
 
             //SelectedUser.PropertyChanged += (x, y) =>
@@ -73,17 +41,40 @@ namespace Logic.ViewModel
             //};
         }
 
+        public List<User> Users { get; set; }
+        public User SelectedUser { get; set; }
+
+        public string NewUserName
+        {
+            get { return _newUserName; }
+            set
+            {
+                _newUserName = value;
+                RaisePropertyChanged("NewUserName");
+                SaveCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        public string NewPassword
+        {
+            get { return _newPassword; }
+            set
+            {
+                _newPassword = value;
+                RaisePropertyChanged("NewPassword");
+                SaveCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        public RelayCommand<User> SelectUserCommand { get; set; }
+        public RelayCommand SaveCommand { get; set; }
+
         private bool CanSave()
         {
             if (NewUserName != null && NewUserName.Length > 1
                 && NewPassword != null && NewPassword.Length > 1)
-            {
                 return true;
-            }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
         private void Save()
@@ -93,10 +84,9 @@ namespace Logic.ViewModel
 
             using (var ctx = new FastFoodContext())
             {
-                ctx.Entry(SelectedUser).State = System.Data.Entity.EntityState.Modified;
+                ctx.Entry(SelectedUser).State = EntityState.Modified;
                 ctx.SaveChanges();
             }
         }
-
     }
 }
