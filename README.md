@@ -2,6 +2,9 @@
 Simple POS that alow the user to add/delete Items, create an invoice and print it and also display the sales history.
 I've created this application for a friend of mine, so It's not intended to be a professional application and it's far from being a complete solution. more complete solutions can be found on the web.
 
+# Language
+the application is in french, you have to translate the StringResources.xaml file in the Ui/Ressources/ Folder to use the application in an another language.
+
 # Framework
 this application was made with wpf using visual studio 2015
 
