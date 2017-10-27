@@ -34,11 +34,6 @@ namespace Logic.ViewModel
                 NewPassword = "";
                 SaveCommand.RaiseCanExecuteChanged();
             });
-
-            //SelectedUser.PropertyChanged += (x, y) =>
-            //{
-            //    saveCommand.RaiseCanExecuteChanged();
-            //};
         }
 
         public List<User> Users { get; set; }
@@ -50,7 +45,7 @@ namespace Logic.ViewModel
             set
             {
                 _newUserName = value;
-                RaisePropertyChanged("NewUserName");
+                RaisePropertyChanged();
                 SaveCommand.RaiseCanExecuteChanged();
             }
         }
@@ -61,7 +56,7 @@ namespace Logic.ViewModel
             set
             {
                 _newPassword = value;
-                RaisePropertyChanged("NewPassword");
+                RaisePropertyChanged();
                 SaveCommand.RaiseCanExecuteChanged();
             }
         }

@@ -109,6 +109,7 @@ namespace Logic.ViewModel
 
                         SelectedSale = null;
                     }
+                    //resets the total displayed
                     RaisePropertyChanged("Total");
                     ComandesRaiseCanExecuteChange();
                 },

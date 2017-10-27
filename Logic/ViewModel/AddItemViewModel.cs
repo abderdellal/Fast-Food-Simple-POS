@@ -23,11 +23,13 @@ namespace Logic.ViewModel
         public string FormulaireValide { get; set; }
         public RelayCommand SaveCommand { get; set; }
 
+        //the list of types an Item can have
         public IEnumerable<ItemType> MyEnumTypeValues => Enum.GetValues(typeof(ItemType))
             .Cast<ItemType>();
 
         public bool IsValid()
         {
+            //remove the displayed message if any when user start typing
             FormulaireValide = null;
             return Item.IsValid();
         }

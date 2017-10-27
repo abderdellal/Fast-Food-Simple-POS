@@ -13,15 +13,18 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
+        <!--Filters-->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 0, 0, 20" Grid.Row="0">
             <TextBlock Text="{StaticResource minDate}" Margin="0, 5, 30, 0" />
             <DatePicker x:Name="minDatePicker" SelectedDateChanged="minDatePicker_SelectedDateChanged" />
             <TextBlock Text="{StaticResource maxDate}" Margin="30, 5, 30, 0" />
             <DatePicker x:Name="maxDatePicker" SelectedDateChanged="maxDatePicker_SelectedDateChanged" />
             <TextBlock Text="{StaticResource ItemType}" Margin="30, 5, 30, 0" />
+            <!--Items type-->
             <ComboBox SelectedItem="{Binding TypeSelected}" ItemsSource="{Binding MyEnumTypeValues}" Width="150" />
 
         </StackPanel>
+        <!--DataGrid  to display the sales list-->
         <DataGrid ItemsSource="{Binding Sales}" AutoGenerateColumns="False" Grid.Row="1" HorizontalAlignment="Center"
                   CanUserSortColumns="True">
             <DataGrid.Columns>
@@ -37,9 +40,11 @@
         </DataGrid>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2" Margin="0,15,0,15">
             <TextBlock Text="{StaticResource TotalSum}" FontSize="15" FontWeight="Bold" />
+            <!--Total sum of the sales displayed-->
             <TextBlock Text="{Binding TotalSum}" Margin="10,0,0,0" FontSize="15" FontWeight="Bold" />
             <TextBlock Text="DA" Margin="5,0,0,0" FontSize="15" FontWeight="Bold" />
         </StackPanel>
+        <!--Print and refresh buttons-->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="3">
             <Button Content="{StaticResource Refresh}" Command="{Binding RefreshCommand}" Margin="30, 0, 0, 0" />
             <Button Content="{StaticResource Print}" Margin="30, 0, 0, 0" Click="Print_Button_Click" />

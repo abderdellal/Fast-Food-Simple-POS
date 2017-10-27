@@ -26,6 +26,7 @@ namespace Logic.ViewModel
                             if (user.MotDePass == Password)
                             {
                                 LoggedUser = user;
+                                //to close the login window when the user is logged in
                                 OnRequestClose(this, new EventArgs());
                             }
                             else
@@ -62,6 +63,9 @@ namespace Logic.ViewModel
             }
         }
 
+        /// <summary>
+        /// requests the login window to close when user is loggen in
+        /// </summary>
         public event EventHandler OnRequestClose;
     }
 }

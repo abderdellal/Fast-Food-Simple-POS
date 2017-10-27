@@ -27,6 +27,9 @@ namespace Logic.Model
         public Invoice Invoice { get; set; }
     }
 
+    /// <summary>
+    /// type of items
+    /// </summary>
     public enum ItemType
     {
         Sandwich,

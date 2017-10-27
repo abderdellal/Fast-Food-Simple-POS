@@ -14,6 +14,10 @@ namespace Logic.Model
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <summary>
+        /// when validating a property of a Model objeect
+        /// <param name="propertyName"> the name of the property to be validated</param>
+        /// <returns>the error message or null</returns>
         public virtual string OnValidate(string propertyName)
         {
             var context = new ValidationContext(this)
@@ -28,6 +32,9 @@ namespace Logic.Model
             return !isValid ? results[0].ErrorMessage : null;
         }
 
+        /// <summary>
+        /// return true if the object is valid
+        /// </summary>
         public bool IsValid()
         {
             var context = new ValidationContext(this);

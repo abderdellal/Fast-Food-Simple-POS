@@ -13,25 +13,32 @@ namespace Logic.ViewModel
     {
         public SalesHistoryViewModel()
         {
+            //tomorow
             MaxDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day + 1, 0, 0, 0);
+            //today
             MinDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
 
             PopulateSales();
 
-            RefreshCommand = new RelayCommand(() => { PopulateSales(); });
+            RefreshCommand = new RelayCommand(PopulateSales);
         }
 
         public ObservableCollection<Sale> Sales { get; set; } = new ObservableCollection<Sale>();
 
+        //interval of time
         public DateTime MaxDate { get; set; }
         public DateTime MinDate { get; set; }
+
+        //type of items to be displayed
         public ItemType? TypeSelected { get; set; }
 
+        //total sum of sales displayed
         public int TotalSum
         {
             get { return Sales.Sum(s => s.TotalPrice); }
         }
 
+        //list of types an item can have
         public IEnumerable<ItemType> MyEnumTypeValues => Enum.GetValues(typeof(ItemType))
             .Cast<ItemType>();
 
@@ -57,7 +64,10 @@ namespace Logic.ViewModel
 
                 foreach (var sale in sales)
                     Sales.Add(sale);
+
+                //updates the total sum
                 RaisePropertyChanged("TotalSum");
+
                 TypeSelected = null;
             }
         }

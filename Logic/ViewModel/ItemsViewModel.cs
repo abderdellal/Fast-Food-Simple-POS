@@ -7,6 +7,9 @@ using Logic.ViewModel.Messages;
 
 namespace Logic.ViewModel
 {
+    /// <summary>
+    /// viewmodel for displaying the list of all items in the database.
+    /// </summary>
     public class ItemsViewModel : ViewModelBase
     {
         public ItemsViewModel()

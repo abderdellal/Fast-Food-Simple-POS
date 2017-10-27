@@ -19,13 +19,14 @@ namespace Logic.ViewModel
             ChangeViewCommand = new RelayCommand<ViewModelBase>(vm => { SelectedViewModel = vm; });
         }
 
+        //the menu won't be displayed if the logged user type is simple
         public string DisplayMenu =>
-            LoginViewModel.LoggedUser != null && LoginViewModel.LoggedUser.UserType == TypeUser.Admin
+            LoginViewModel.LoggedUser != null && LoginViewModel.LoggedUser.UserType == UserType.Admin
                 ? "Visible"
                 : "Collapsed";
 
         public string DisplayIconBar =>
-            LoginViewModel.LoggedUser != null && LoginViewModel.LoggedUser.UserType == TypeUser.Admin
+            LoginViewModel.LoggedUser != null && LoginViewModel.LoggedUser.UserType == UserType.Admin
                 ? "Collapsed"
                 : "Visible";
 

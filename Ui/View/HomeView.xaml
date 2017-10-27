@@ -25,6 +25,7 @@
 
         <DockPanel Grid.Column="1">
             <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Center">Articles</TextBlock>
+            <!--Items displayed as buttons (clicking on one will add it to the current invoice Items)-->
             <ListView ItemsSource="{Binding Items}" DockPanel.Dock="Bottom" HorizontalAlignment="Center"
                       x:Name="ListViewArticle">
                 <ListView.ItemTemplate>
@@ -52,21 +53,26 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
+                <!--Reset the invoice items-->
                 <Button Grid.Column="0" Background="red" Height="60" Command="{Binding ResetSales}">
                     <Button.Content>
                         <materialDesign:PackIcon Kind="Refresh" />
                     </Button.Content>
                 </Button>
+                <!--Remove selected item from the current invoice-->
                 <Button Grid.Column="1" Height="60" Command="{Binding DeleteSale}">
                     <Button.Content>
                         <materialDesign:PackIcon Kind="Close" />
                     </Button.Content>
                 </Button>
+                <!--Decrease selected item Amount-->
                 <Button Grid.Column="2" Height="60" Command="{Binding DecreaseSaleAmount}">
                     <Button.Content>
                         <materialDesign:PackIcon Kind="MinusCircleOutline" />
                     </Button.Content>
                 </Button>
+                
+                <!--Increase selected item Amount-->
                 <Button Grid.Column="3" Height="60" Command="{Binding IncreaseSaleAmount}">
                     <Button.Content>
                         <materialDesign:PackIcon Kind="PlusCircleOutline" />
@@ -85,6 +91,7 @@
                     <TextBlock Text="{StaticResource Total}" Grid.Column="2" HorizontalAlignment="Center" />
                 </Grid>
 
+                <!--Display the current invoice Items with amount and totalprice-->
                 <ListView ItemsSource="{Binding Sales}" DockPanel.Dock="Bottom" SelectionMode="Single"
                           x:Name="myListView" SelectionChanged="ListView_SelectionChanged">
                     <ListView.ItemTemplate>
@@ -109,7 +116,9 @@
             </DockPanel>
 
             <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                <!--Display the Total of the invoice-->
                 <TextBlock Text="{Binding Total, StringFormat='Total = {0} DA'}" Margin="0,0,50,0" FontSize="22" />
+                <!--savebutton-->
                 <Button Height="60" MaxWidth="300" Content="{StaticResource Save}" FontSize="25"
                         Command="{Binding SaveInvoice}" Click="Print_Invoice" />
             </StackPanel>
